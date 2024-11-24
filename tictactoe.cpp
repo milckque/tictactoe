@@ -14,10 +14,34 @@ void drawBoard(char board[3][3]) {
 }
 
 
+
 int main() {
     char board[3][3] = { { ' ', ' ', ' ' },
                          { ' ', ' ', ' ' },
                          { ' ', ' ', ' ' } };
 
-    drawBoard(board);
+    int row, col;
+    char player = 'X';
+
+    for (int turn = 0; turn < 9; ++turn) {
+        drawBoard(board);
+
+        while (true) {
+            cout << "Player " << player << "'s turn, please enter row and column (0-2): ";
+            cin >> row >> col;
+
+            if (board[row][col] != ' ' || row < 0 || row > 2 || col < 0 || col > 2) 
+                cout << "Invalid dimensions, please try again.\n";
+            else 
+                break;
+        }
+
+        board[row][col] = player;
+
+
+
+        player = (player == 'X') ? 'O' : 'X'; 
+            
+    }
+    return 0;
 }
